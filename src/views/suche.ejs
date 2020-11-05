@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+  <%- include('partials/head') -%>
+
+  <body>
+    <%- include('partials/header') -%>
+
+    <div class="card mt-2">
+      <div class="card-header">
+        <i class="material-icons">folder_open</i>
+        <span class="ml-1 font-weight-bold">Alle Pflanzen</span>
+      </div>
+
+      <div class="card-body">
+        <table class="table table-striped table-hover table-responsive">
+          <thead class="thead-default">
+            <tr>
+              <th>ID</th>
+              <th>Name</th>
+              <th>Versandart</th>
+            </tr>
+          </thead>
+
+          <tbody>
+            <% pflanzen.forEach((pflanze) => { %>
+            <tr>
+              <td><%= pflanze._id %></td>
+              <td><%= pflanze.pflanze %></td>
+              <td><%= pflanze.versandart %></td>
+            </tr>
+            <% }); %>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <%- include('partials/scripts') -%>
+  </body>
+</html>
