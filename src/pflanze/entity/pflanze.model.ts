@@ -41,7 +41,7 @@ export const pflanzeSchema = new Schema(
         preis: { type: Number, required: true },
         rabatt: Number,
         lieferbar: Boolean,
-        artikelnr: {
+        artikelnummer: {
             type: String,
             required: true,
             immutable: true,
@@ -66,9 +66,9 @@ pflanzeSchema.plugin(optimistic);
 // Methoden zum Schema hinzufuegen, damit sie spaeter beim Model (s.u.)
 // verfuegbar sind, was aber bei pflanze.check() zu eines TS-Syntaxfehler fuehrt:
 // schema.methods.check = () => {...}
-// schema.statics.findByTitel =
-//     (titel: string, cb: Function) =>
-//         return this.find({titel: titel}, cb)
+// schema.statics.findByName =
+//     (name: string, cb: Function) =>
+//         return this.find({name: name}, cb)
 
 // Ein Model ist ein uebersetztes Schema und stellt die CRUD-Operationen fuer
 // die Dokumente bereit, d.h. das Pattern "Active Record" wird realisiert.
