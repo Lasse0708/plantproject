@@ -47,12 +47,11 @@ const createIndex = async (collection: Collection) => {
 
     // http://mongodb.github.io/node-mongodb-native/3.5/api/Collection.html#createIndex
     // Beachte: bei createIndexes() gelten die Optionen fuer alle Indexe
-    
-    let index = await collection.createIndex('titel', { unique: false });
+    let index = await collection.createIndex('name', { unique: false });
     logger.warn(`Der Index ${index} wurde angelegt.`);
-    index = await collection.createIndex('isbn', { unique: false });
+    index = await collection.createIndex('artikelnummer', { unique: false });
     logger.warn(`Der Index ${index} wurde angelegt.`);
-    index = await collection.createIndex('schlagwoerter', { sparse: true });
+    index = await collection.createIndex('schlagwoerter', { sparse: false });
     logger.warn(`Der Index ${index} wurde angelegt.`);
 };
 
@@ -96,7 +95,6 @@ export const populateDB = async (dev?: boolean) => {
     if (collection === undefined) {
         return;
     }
-
     await createIndex(collection);
 
     uploadBinary(db, client);

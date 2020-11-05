@@ -28,7 +28,7 @@ export const typeDefs = gql`
         NUTZPFLANZE
     }
 
-    "Enum-Typ fuer den Verlag einer Pflanze"
+    "Enum-Typ fuer die Versandart einer Pflanze"
     enum Versandart {
         VERSAND
         SELBSTABHOLUNG
@@ -46,7 +46,7 @@ export const typeDefs = gql`
         preis: Float
         rabatt: Float
         lieferbar: Boolean
-        artikelnr: String
+        artikelnummer: String
         herkunft: String
         schlagwoerter: [String]
     }
@@ -67,7 +67,7 @@ export const typeDefs = gql`
             preis: Float
             rabatt: Float
             lieferbar: Boolean
-            artikelnr: String
+            artikelnummer: String
             herkunft: String
             schlagwoerter: [String]
         ): Pflanze
@@ -80,7 +80,7 @@ export const typeDefs = gql`
             preis: Float
             rabatt: Float
             lieferbar: Boolean
-            artikelnr: String
+            artikelnummer: String
             herkunft: String
             schlagwoerter: [String]
             version: Int

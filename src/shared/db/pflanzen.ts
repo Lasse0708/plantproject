@@ -51,7 +51,7 @@ export const pflanzen = [
     },
     {
         _id: '00000000-0000-0000-0000-000000000003',
-        name: 'Rosmarin ',
+        name: 'Rosmarin',
         wuchshoehe: 1,
         pflanzentyp: 'NUTZPFLANZE',
         versandart: 'VERSAND',

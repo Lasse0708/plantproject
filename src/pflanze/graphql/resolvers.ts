@@ -35,14 +35,14 @@ const findPflanzeById = async (id: string) => {
     return withIdAndVersion(pflanze);
 };
 
-const findPflanzen = async (titel: string | undefined) => {
-    const suchkriterium = titel === undefined ? {} : { titel };
+const findPflanzen = async (name: string | undefined) => {
+    const suchkriterium = name === undefined ? {} : { name };
     const pflanzen = await pflanzeService.find(suchkriterium);
     return pflanzen.map((pflanze) => withIdAndVersion(pflanze));
 };
 
-interface TitelCriteria {
-    titel: string;
+interface NameCriteria {
+    name: string;
 }
 
 interface IdCriteria {
@@ -118,8 +118,8 @@ const deletePflanze = async (id: string) => {
 
 // Queries passend zu "type Query" in typeDefs.ts
 const query = {
-    // Pflanzen suchen, ggf. mit Titel als Suchkriterium
-    pflanzen: (_: unknown, { titel }: TitelCriteria) => findPflanzen(titel),
+    // Pflanzen suchen, ggf. mit Name als Suchkriterium
+    pflanzen: (_: unknown, { name }: NameCriteria) => findPflanzen(name),
     // Ein Pflanze mit einer bestimmten ID suchen
     pflanze: (_: unknown, { id }: IdCriteria) => findPflanzeById(id),
 };

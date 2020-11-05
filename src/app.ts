@@ -53,8 +53,8 @@ const limiter = rateLimit(rateLimitOptions);
 
 const apiPath = '/api';
 export const PATHS = {
-    buecher: `${apiPath}/buecher`,
-    verlage: `${apiPath}/verlage`,
+    pflanzen: `${apiPath}/pflanzen`,
+    pflanzentypen: `${apiPath}/pflanzentypen`,
     login: `${apiPath}/login`,
     graphql: '/graphql',
     html: '/html',
@@ -114,8 +114,8 @@ class App {
     }
 
     private routes() {
-        this.buecherRoutes();
-        this.verlagRoutes();
+        this.pflanzenRoutes();
+        this.pflanzentypRoutes();
         this.loginRoutes();
         this.pflanzeGraphqlRoutes();
         this.htmlRoutes();
@@ -124,7 +124,7 @@ class App {
         this.app.use(internalError);
     }
 
-    private buecherRoutes() {
+    private pflanzenRoutes() {
         // vgl: Spring WebFlux.fn
         // https://expressjs.com/en/api.html#router
         // Beispiele fuer "Middleware" bei Express:
@@ -170,13 +170,13 @@ class App {
             .put(`/:${idParam}/file`, validateJwt, isAdminMitarbeiter, upload)
             .get(`/:${idParam}/file`, download);
 
-        this.app.use(PATHS.buecher, router);
+        this.app.use(PATHS.pflanzen, router);
     }
 
-    private verlagRoutes() {
+    private pflanzentypRoutes() {
         const router = Router(); // eslint-disable-line new-cap
         router.get('/', notYetImplemented);
-        this.app.use(PATHS.verlage, router);
+        this.app.use(PATHS.pflanzentypen, router);
     }
 
     private loginRoutes() {
