@@ -32,7 +32,7 @@ const port = 27017;
 const user = DB_USER ?? 'Lasse';
 const pass = DB_PASS ?? 'G1bson123';
 const tls = DB_TLS === undefined || DB_TLS === 'true' || DB_TLS === 'TRUE';
-const dbPopulate = DB_POPULATE !== undefined;
+const dbPopulate = true;
 
 let url: string;
 let adminUrl: string;
