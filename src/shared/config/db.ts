@@ -18,7 +18,6 @@ const {
     DB_USER,
     DB_PASS,
     DB_TLS,
-    DB_POPULATE,
     MOCK_DB,
 } = process.env; // eslint-disable-line node/no-process-env
 
