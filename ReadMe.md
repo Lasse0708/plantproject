@@ -542,7 +542,7 @@ Powershell-Terminal die Interaktion mit Heroku verfolgen.
 Das wiederholt man dann noch für die Umgebungsvariable mit den passenden
 Werten für Benutzername und Passwort aus der Atlas-Konfiguration:
 
-- DB_USER=?????
+- Name=?????
 - DB_PASS=?????
 - APOLLO_PLAYGROUND=true
 - DB_POPULATE=true
