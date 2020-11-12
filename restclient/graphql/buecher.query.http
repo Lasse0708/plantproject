@@ -20,7 +20,7 @@
 @url = https://localhost:3000/graphql
 #@url = https://gener-iert-12345.herokuapp.com/graphql
 
-### Suche id, titel, art und version von allen Buechern
+### Suche id, name, art und version von allen Buechern
 POST {{url}}
 Content-Type: application/json
 X-REQUEST-TYPE: GraphQL
@@ -28,47 +28,47 @@ X-REQUEST-TYPE: GraphQL
 {
   pflanzen {
     id
-    titel
+    name
     art
     version
   }
 }
 
-### Suche titel, art, isbn und version von einem Pflanze mit vorhandener Pflanze-ID
+### Suche name, art, isbn und version von einem Pflanze mit vorhandener Pflanze-ID
 POST {{url}}
 Content-Type: application/json
 X-REQUEST-TYPE: GraphQL
 
 {
   pflanze(id: "00000000-0000-0000-0000-000000000001") {
-    titel
+    name
     art
     isbn
     version
   }
 }
 
-### Suche titel und art von Buechern mit vorhandenem Titel
+### Suche name und art von Buechern mit vorhandenem Name
 POST {{url}}
 Content-Type: application/json
 X-REQUEST-TYPE: GraphQL
 
 {
-  pflanzen(titel: "Alpha") {
-    titel
+  pflanzen(name: "Alpha") {
+    name
     art
   }
 }
 
 
-### Suche titel, art und schlagwoerter von Buechern mit vorhandenem Titel
+### Suche name, art und schlagwoerter von Buechern mit vorhandenem Name
 POST {{url}}
 Content-Type: application/json
 X-REQUEST-TYPE: GraphQL
 
 {
-  pflanzen(titel: "a") {
-    titel
+  pflanzen(name: "a") {
+    name
     art
     schlagwoerter
   }

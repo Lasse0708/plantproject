@@ -48,12 +48,12 @@ Authorization: Bearer {{login.response.body.$.token}}
 
 < .\json\pflanze-neu-invalid.json
 
-### Neues Pflanze anlegen, aber der Titel existiert bereits
+### Neues Pflanze anlegen, aber der Name existiert bereits
 POST https://{{host}}/pflanzen
 Content-Type: application/json
 Authorization: Bearer {{login.response.body.$.token}}
 
-< .\json\pflanze-neu.titel-exists.json
+< .\json\pflanze-neu.name-exists.json
 
 ### Neues Pflanze anlegen, aber die ISBN-Nummer existiert bereits
 POST https://{{host}}/pflanzen

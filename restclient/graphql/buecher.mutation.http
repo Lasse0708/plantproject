@@ -27,7 +27,7 @@ X-REQUEST-TYPE: GraphQL
 
 mutation {
   createPflanze(
-    titel: "Test"
+    name: "Test"
     rating: 1
     art: "KINDLE"
     verlag: "FOO_VERLAG"
@@ -51,7 +51,7 @@ X-REQUEST-TYPE: GraphQL
 mutation {
   updatePflanze(
     _id: "00000000-0000-0000-0000-000000000003",
-    titel: "Geaendert",
+    name: "Geaendert",
     rating: 5,
     art: "DRUCKAUSGABE",
     verlag: "FOO_VERLAG",

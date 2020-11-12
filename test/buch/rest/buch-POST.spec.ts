@@ -41,7 +41,7 @@ const { expect } = chai;
 // T e s t d a t e n
 // -----------------------------------------------------------------------------
 const neuesPflanze: Pflanze = {
-    titel: 'Neu',
+    name: 'Neu',
     rating: 1,
     art: PflanzeArt.DRUCKAUSGABE,
     verlag: Verlag.FOO_VERLAG,
@@ -55,7 +55,7 @@ const neuesPflanze: Pflanze = {
     autoren: [{ nachname: 'Test', vorname: 'Theo' }],
 };
 const neuesPflanzeInvalid: object = {
-    titel: 'Blabla',
+    name: 'Blabla',
     rating: -1,
     art: 'UNSICHTBAR',
     verlag: 'NO_VERLAG',
@@ -67,8 +67,8 @@ const neuesPflanzeInvalid: object = {
     autoren: [{ nachname: 'Test', vorname: 'Theo' }],
     schlagwoerter: [],
 };
-const neuesPflanzeTitelExistiert: Pflanze = {
-    titel: 'Alpha',
+const neuesPflanzeNameExistiert: Pflanze = {
+    name: 'Alpha',
     rating: 1,
     art: PflanzeArt.DRUCKAUSGABE,
     verlag: Verlag.FOO_VERLAG,
@@ -175,14 +175,14 @@ describe('POST /pflanzen', () => {
         expect(isbn).to.endWith('eine gueltige ISBN-Nummer.');
     });
 
-    test('Neues Pflanze, aber der Titel existiert bereits', async () => {
+    test('Neues Pflanze, aber der Name existiert bereits', async () => {
         // given
         const token = await login(loginUri);
         const headers = new Headers({
             Authorization: `Bearer ${token}`,
             'Content-Type': 'application/json',
         });
-        const body = JSON.stringify(neuesPflanzeTitelExistiert);
+        const body = JSON.stringify(neuesPflanzeNameExistiert);
         const request = new Request(buecherUri, {
             method: HttpMethod.POST,
             headers,
@@ -196,13 +196,13 @@ describe('POST /pflanzen', () => {
         // then
         expect(response.status).to.be.equal(HttpStatus.BAD_REQUEST);
         const responseBody = await response.text();
-        expect(responseBody).has.string('Titel');
+        expect(responseBody).has.string('Name');
     });
 
     test('Neues Pflanze, aber ohne Token', async () => {
         // given
         const headers = new Headers({ 'Content-Type': 'application/json' });
-        const body = JSON.stringify(neuesPflanzeTitelExistiert);
+        const body = JSON.stringify(neuesPflanzeNameExistiert);
         const request = new Request(buecherUri, {
             method: HttpMethod.POST,
             headers,

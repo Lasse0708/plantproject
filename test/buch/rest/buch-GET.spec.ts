@@ -39,8 +39,8 @@ const { expect } = chai;
 // -----------------------------------------------------------------------------
 // T e s t d a t e n
 // -----------------------------------------------------------------------------
-const titelVorhanden = ['a', 't', 'g'];
-const titelNichtVorhanden = ['xx', 'yy'];
+const nameVorhanden = ['a', 't', 'g'];
+const nameNichtVorhanden = ['xx', 'yy'];
 const schlagwoerterVorhanden = ['javascript', 'typescript'];
 const schlagwoerterNichtVorhanden = ['csharp', 'php'];
 
@@ -82,11 +82,11 @@ describe('GET /pflanzen', () => {
         });
     });
 
-    each(titelVorhanden).test(
-        'Pflanzen mit einem Titel, der "%s" enthaelt',
-        async (teilTitel) => {
+    each(nameVorhanden).test(
+        'Pflanzen mit einem Name, der "%s" enthaelt',
+        async (teilName) => {
             // given
-            const uri = `${buecherUri}?titel=${teilTitel}`;
+            const uri = `${buecherUri}?name=${teilName}`;
 
             // when
             const response = await fetch(uri, { agent });
@@ -99,18 +99,18 @@ describe('GET /pflanzen', () => {
             const body = await response.json();
             expect(body).not.to.be.empty;
 
-            // Jedes Pflanze hat einen Titel mit dem Teilstring 'a'
-            body.map((pflanze: PflanzeData) => pflanze.titel).forEach((titel: string) =>
-                expect(titel.toLowerCase()).to.have.string(teilTitel),
+            // Jedes Pflanze hat einen Name mit dem Teilstring 'a'
+            body.map((pflanze: PflanzeData) => pflanze.name).forEach((name: string) =>
+                expect(name.toLowerCase()).to.have.string(teilName),
             );
         },
     );
 
-    each(titelNichtVorhanden).test(
-        'Keine Pflanzen mit einem Titel, der "%s" nicht enthaelt',
-        async (teilTitel) => {
+    each(nameNichtVorhanden).test(
+        'Keine Pflanzen mit einem Name, der "%s" nicht enthaelt',
+        async (teilName) => {
             // given
-            const uri = `${buecherUri}?titel=${teilTitel}`;
+            const uri = `${buecherUri}?name=${teilName}`;
 
             // when
             const response = await fetch(uri, { agent });

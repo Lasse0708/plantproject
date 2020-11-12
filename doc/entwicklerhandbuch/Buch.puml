@@ -54,7 +54,7 @@ package pflanze.entity {
     + __v?: number
     + createdAt?: number
     + updatedAt?: number
-    + titel: string
+    + name: string
     + rating?: number
     + art?: PflanzeArt
     + verlag: Verlag

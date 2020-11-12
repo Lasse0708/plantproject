@@ -41,7 +41,7 @@ const { expect } = chai;
 // -----------------------------------------------------------------------------
 const geaendertesPflanze: object = {
     // isbn wird nicht geaendet
-    titel: 'Geaendert',
+    name: 'Geaendert',
     rating: 1,
     art: PflanzeArt.DRUCKAUSGABE,
     verlag: Verlag.FOO_VERLAG,
@@ -56,7 +56,7 @@ const geaendertesPflanze: object = {
 const idVorhanden = '00000000-0000-0000-0000-000000000003';
 
 const geaendertesPflanzeIdNichtVorhanden: object = {
-    titel: 'Nichtvorhanden',
+    name: 'Nichtvorhanden',
     rating: 1,
     art: PflanzeArt.DRUCKAUSGABE,
     verlag: Verlag.FOO_VERLAG,
@@ -70,7 +70,7 @@ const geaendertesPflanzeIdNichtVorhanden: object = {
 const idNichtVorhanden = '00000000-0000-0000-0000-000000000999';
 
 const geaendertesPflanzeInvalid: object = {
-    titel: 'Alpha',
+    name: 'Alpha',
     rating: -1,
     art: 'UNSICHTBAR',
     verlag: 'NO_VERLAG',
@@ -85,7 +85,7 @@ const geaendertesPflanzeInvalid: object = {
 
 const veraltesPflanze: object = {
     // isbn wird nicht geaendet
-    titel: 'Veraltet',
+    name: 'Veraltet',
     rating: 1,
     art: PflanzeArt.DRUCKAUSGABE,
     verlag: Verlag.FOO_VERLAG,

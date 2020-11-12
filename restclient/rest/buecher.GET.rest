@@ -40,8 +40,8 @@ https://{{host}}/YYYYYYYY-YYYY-YYYY-YYYY-YYYYYYYYYYYY
 ### Suche mit nicht-vorhandener Pflanze-ID
 https://{{host}}/99999999-9999-9999-9999-999999999999
 
-### Suche mit vorhandenem Titel
-https://{{host}}?titel=a
+### Suche mit vorhandenem Name
+https://{{host}}?name=a
 
 ### Suche mit vorhandener ISBN
 https://{{host}}?isbn=978-3897225831
