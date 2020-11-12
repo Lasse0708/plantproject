@@ -15,7 +15,7 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-import { BuchArt, Verlag } from '../../../src/pflanze/entity';
+import { PflanzeArt, Verlag } from '../../../src/pflanze/entity';
 import { HttpMethod, agent, createTestserver } from '../../testserver';
 import { HttpStatus, serverConfig, uuidRegexp } from '../../../src/shared';
 import { afterAll, beforeAll, describe, test } from '@jest/globals';
@@ -40,10 +40,10 @@ const { expect } = chai;
 // -----------------------------------------------------------------------------
 // T e s t d a t e n
 // -----------------------------------------------------------------------------
-const neuesBuch: Pflanze = {
+const neuesPflanze: Pflanze = {
     titel: 'Neu',
     rating: 1,
-    art: BuchArt.DRUCKAUSGABE,
+    art: PflanzeArt.DRUCKAUSGABE,
     verlag: Verlag.FOO_VERLAG,
     preis: 99.99,
     rabatt: 0.099,
@@ -54,7 +54,7 @@ const neuesBuch: Pflanze = {
     schlagwoerter: ['JAVASCRIPT', 'TYPESCRIPT'],
     autoren: [{ nachname: 'Test', vorname: 'Theo' }],
 };
-const neuesBuchInvalid: object = {
+const neuesPflanzeInvalid: object = {
     titel: 'Blabla',
     rating: -1,
     art: 'UNSICHTBAR',
@@ -67,10 +67,10 @@ const neuesBuchInvalid: object = {
     autoren: [{ nachname: 'Test', vorname: 'Theo' }],
     schlagwoerter: [],
 };
-const neuesBuchTitelExistiert: Pflanze = {
+const neuesPflanzeTitelExistiert: Pflanze = {
     titel: 'Alpha',
     rating: 1,
-    art: BuchArt.DRUCKAUSGABE,
+    art: PflanzeArt.DRUCKAUSGABE,
     verlag: Verlag.FOO_VERLAG,
     preis: 99.99,
     rabatt: 0.099,
@@ -112,7 +112,7 @@ describe('POST /pflanzen', () => {
             Authorization: `Bearer ${token}`,
             'Content-Type': 'application/json',
         });
-        const body = JSON.stringify(neuesBuch);
+        const body = JSON.stringify(neuesPflanze);
         const request = new Request(buecherUri, {
             method: HttpMethod.POST,
             headers,
@@ -149,7 +149,7 @@ describe('POST /pflanzen', () => {
             Authorization: `Bearer ${token}`,
             'Content-Type': 'application/json',
         });
-        const body = JSON.stringify(neuesBuchInvalid);
+        const body = JSON.stringify(neuesPflanzeInvalid);
         const request = new Request(buecherUri, {
             method: HttpMethod.POST,
             headers,
@@ -165,11 +165,11 @@ describe('POST /pflanzen', () => {
         const { art, rating, verlag, datum, isbn } = await response.json();
 
         expect(art).to.be.equal(
-            'Die Art eines Buches muss KINDLE oder DRUCKAUSGABE sein.',
+            'Die Art eines Pflanzees muss KINDLE oder DRUCKAUSGABE sein.',
         );
         expect(rating).to.endWith('eine gueltige Bewertung.');
         expect(verlag).to.be.equal(
-            'Der Verlag eines Buches muss FOO_VERLAG oder BAR_VERLAG sein.',
+            'Der Verlag eines Pflanzees muss FOO_VERLAG oder BAR_VERLAG sein.',
         );
         expect(datum).to.contain('ist kein gueltiges Datum');
         expect(isbn).to.endWith('eine gueltige ISBN-Nummer.');
@@ -182,7 +182,7 @@ describe('POST /pflanzen', () => {
             Authorization: `Bearer ${token}`,
             'Content-Type': 'application/json',
         });
-        const body = JSON.stringify(neuesBuchTitelExistiert);
+        const body = JSON.stringify(neuesPflanzeTitelExistiert);
         const request = new Request(buecherUri, {
             method: HttpMethod.POST,
             headers,
@@ -202,7 +202,7 @@ describe('POST /pflanzen', () => {
     test('Neues Pflanze, aber ohne Token', async () => {
         // given
         const headers = new Headers({ 'Content-Type': 'application/json' });
-        const body = JSON.stringify(neuesBuchTitelExistiert);
+        const body = JSON.stringify(neuesPflanzeTitelExistiert);
         const request = new Request(buecherUri, {
             method: HttpMethod.POST,
             headers,
@@ -226,7 +226,7 @@ describe('POST /pflanzen', () => {
             Authorization: `Bearer ${token}`,
             'Content-Type': 'application/json',
         });
-        const body = JSON.stringify(neuesBuch);
+        const body = JSON.stringify(neuesPflanze);
         const request = new Request(buecherUri, {
             method: HttpMethod.POST,
             headers,

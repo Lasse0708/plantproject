@@ -15,7 +15,7 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-import { BuchArt, Verlag } from '../../../src/pflanze/entity';
+import { PflanzeArt, Verlag } from '../../../src/pflanze/entity';
 import { HttpMethod, agent, createTestserver } from '../../testserver';
 import { HttpStatus, logger, serverConfig } from '../../../src/shared';
 import { afterAll, beforeAll, describe, test } from '@jest/globals';
@@ -39,11 +39,11 @@ const { expect } = chai;
 // -----------------------------------------------------------------------------
 // T e s t d a t e n
 // -----------------------------------------------------------------------------
-const geaendertesBuch: object = {
+const geaendertesPflanze: object = {
     // isbn wird nicht geaendet
     titel: 'Geaendert',
     rating: 1,
-    art: BuchArt.DRUCKAUSGABE,
+    art: PflanzeArt.DRUCKAUSGABE,
     verlag: Verlag.FOO_VERLAG,
     preis: 33.33,
     rabatt: 0.033,
@@ -55,10 +55,10 @@ const geaendertesBuch: object = {
 };
 const idVorhanden = '00000000-0000-0000-0000-000000000003';
 
-const geaendertesBuchIdNichtVorhanden: object = {
+const geaendertesPflanzeIdNichtVorhanden: object = {
     titel: 'Nichtvorhanden',
     rating: 1,
-    art: BuchArt.DRUCKAUSGABE,
+    art: PflanzeArt.DRUCKAUSGABE,
     verlag: Verlag.FOO_VERLAG,
     preis: 33.33,
     rabatt: 0.033,
@@ -69,7 +69,7 @@ const geaendertesBuchIdNichtVorhanden: object = {
 };
 const idNichtVorhanden = '00000000-0000-0000-0000-000000000999';
 
-const geaendertesBuchInvalid: object = {
+const geaendertesPflanzeInvalid: object = {
     titel: 'Alpha',
     rating: -1,
     art: 'UNSICHTBAR',
@@ -83,11 +83,11 @@ const geaendertesBuchInvalid: object = {
     schlagwoerter: [],
 };
 
-const veraltesBuch: object = {
+const veraltesPflanze: object = {
     // isbn wird nicht geaendet
     titel: 'Veraltet',
     rating: 1,
-    art: BuchArt.DRUCKAUSGABE,
+    art: PflanzeArt.DRUCKAUSGABE,
     verlag: Verlag.FOO_VERLAG,
     preis: 33.33,
     rabatt: 0.033,
@@ -129,7 +129,7 @@ describe('PUT /pflanzen/:id', () => {
             'Content-Type': 'application/json',
             'If-Match': '"0"',
         });
-        const body = JSON.stringify(geaendertesBuch);
+        const body = JSON.stringify(geaendertesPflanze);
         const request = new Request(`${buecherUri}/${idVorhanden}`, {
             method: HttpMethod.PUT,
             headers,
@@ -154,7 +154,7 @@ describe('PUT /pflanzen/:id', () => {
             'Content-Type': 'application/json',
             'If-Match': '"0"',
         });
-        const body = JSON.stringify(geaendertesBuchIdNichtVorhanden);
+        const body = JSON.stringify(geaendertesPflanzeIdNichtVorhanden);
         const request = new Request(`${buecherUri}/${idNichtVorhanden}`, {
             method: HttpMethod.PUT,
             headers,
@@ -181,7 +181,7 @@ describe('PUT /pflanzen/:id', () => {
             'Content-Type': 'application/json',
             'If-Match': '"0"',
         });
-        const body = JSON.stringify(geaendertesBuchInvalid);
+        const body = JSON.stringify(geaendertesPflanzeInvalid);
         const request = new Request(`${buecherUri}/${idVorhanden}`, {
             method: HttpMethod.PUT,
             headers,
@@ -196,11 +196,11 @@ describe('PUT /pflanzen/:id', () => {
         expect(response.status).to.be.equal(HttpStatus.BAD_REQUEST);
         const { art, rating, verlag, datum, isbn } = await response.json();
         expect(art).to.be.equal(
-            'Die Art eines Buches muss KINDLE oder DRUCKAUSGABE sein.',
+            'Die Art eines Pflanzees muss KINDLE oder DRUCKAUSGABE sein.',
         );
         expect(rating).to.endWith('eine gueltige Bewertung.');
         expect(verlag).to.be.equal(
-            'Der Verlag eines Buches muss FOO_VERLAG oder BAR_VERLAG sein.',
+            'Der Verlag eines Pflanzees muss FOO_VERLAG oder BAR_VERLAG sein.',
         );
         expect(datum).to.contain('ist kein gueltiges Datum');
         expect(isbn).to.endWith('eine gueltige ISBN-Nummer.');
@@ -213,7 +213,7 @@ describe('PUT /pflanzen/:id', () => {
             Authorization: `Bearer ${token}`,
             'Content-Type': 'application/json',
         });
-        const body = JSON.stringify(geaendertesBuch);
+        const body = JSON.stringify(geaendertesPflanze);
         const request = new Request(`${buecherUri}/${idVorhanden}`, {
             method: HttpMethod.PUT,
             headers,
@@ -238,7 +238,7 @@ describe('PUT /pflanzen/:id', () => {
             'Content-Type': 'application/json',
             'If-Match': '"-1"',
         });
-        const body = JSON.stringify(veraltesBuch);
+        const body = JSON.stringify(veraltesPflanze);
         const request = new Request(`${buecherUri}/${idVorhanden}`, {
             method: HttpMethod.PUT,
             headers,
@@ -261,7 +261,7 @@ describe('PUT /pflanzen/:id', () => {
             'Content-Type': 'application/json',
             'If-Match': '"0"',
         });
-        const body = JSON.stringify(geaendertesBuch);
+        const body = JSON.stringify(geaendertesPflanze);
         const request = new Request(`${buecherUri}/${idVorhanden}`, {
             method: HttpMethod.PUT,
             headers,
@@ -286,7 +286,7 @@ describe('PUT /pflanzen/:id', () => {
             'Content-Type': 'application/json',
             'If-Match': '"0"',
         });
-        const body = JSON.stringify(geaendertesBuch);
+        const body = JSON.stringify(geaendertesPflanze);
         const request = new Request(`${buecherUri}/${idVorhanden}`, {
             method: HttpMethod.PUT,
             headers,

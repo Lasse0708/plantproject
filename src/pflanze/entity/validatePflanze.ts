@@ -31,7 +31,7 @@ export const validatePflanze = (pflanze: Pflanze) => {
         err.name = 'Eine Pflanze muss einen Namen haben.';
     } else if (!/^\w.*/u.test(name)) {
         err.name =
-            'Ein Pflanzenname muss mit einem Buchstaben, einer Ziffer oder _ beginnen.';
+            'Ein Pflanzenname muss mit einem Pflanzestaben, einer Ziffer oder _ beginnen.';
     }
 
     if (

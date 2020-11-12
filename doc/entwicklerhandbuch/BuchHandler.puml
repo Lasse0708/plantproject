@@ -40,12 +40,12 @@ App ..> express
 
 package pflanze {
   package entity {
-    interface BuchData <<entity>> {
+    interface PflanzeData <<entity>> {
     }
   }
 
   package service {
-    class BuchService << control >> {
+    class PflanzeService << control >> {
     }
   }
 
@@ -53,13 +53,13 @@ package pflanze {
     "Handler Functions" .right.> Request
     "Handler Functions" ..> Response
     "Handler Functions" ..> Promise
-    "Handler Functions" ..> BuchHandler
+    "Handler Functions" ..> PflanzeHandler
 
-    BuchHandler o--> "1" BuchService : service
-    BuchHandler .right.> Request
-    BuchHandler ..> Response
-    BuchHandler ..> BuchData
-    BuchHandler ..> Promise
+    PflanzeHandler o--> "1" PflanzeService : service
+    PflanzeHandler .right.> Request
+    PflanzeHandler ..> Response
+    PflanzeHandler ..> PflanzeData
+    PflanzeHandler ..> Promise
 
     class "Handler Functions" << boundary >> {
       + async findById(req: Request, res: Response): Promise<void>
@@ -70,7 +70,7 @@ package pflanze {
     }
     hide "Handler Functions" << boundary >> circle
 
-    class BuchHandler << control >> {
+    class PflanzeHandler << control >> {
       + async findById(req: Request, res: Response): Promise<void>
       + async find(req: Request, res: Response): Promise<void>
       + async create(req: Request, res: Response): Promise<void>

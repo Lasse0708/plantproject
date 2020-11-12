@@ -26,20 +26,20 @@ package mongoose {
 }
 
 package pflanze.entity {
-  class "validateBuch()" as validateBuch
-  hide validateBuch circle
+  class "validatePflanze()" as validatePflanze
+  hide validatePflanze circle
 
-  class BuchModel
-  hide BuchModel circle
+  class PflanzeModel
+  hide PflanzeModel circle
 
-  BuchModel ..> Schema
-  BuchModel ..> model
-  BuchModel ..> validateBuch
+  PflanzeModel ..> Schema
+  PflanzeModel ..> model
+  PflanzeModel ..> validatePflanze
 
-  BuchData ..> BuchArt
-  BuchData ..> Verlag
+  PflanzeData ..> PflanzeArt
+  PflanzeData ..> Verlag
 
-  enum BuchArt {
+  enum PflanzeArt {
     KINDLE
     DRUCKAUSGABE
   }
@@ -49,14 +49,14 @@ package pflanze.entity {
     BAR_VERLAG
   }
 
-  interface BuchData <<entity>> {
+  interface PflanzeData <<entity>> {
     + _id?: string
     + __v?: number
     + createdAt?: number
     + updatedAt?: number
     + titel: string
     + rating?: number
-    + art?: BuchArt
+    + art?: PflanzeArt
     + verlag: Verlag
     + preis: number
     + rabatt?: number

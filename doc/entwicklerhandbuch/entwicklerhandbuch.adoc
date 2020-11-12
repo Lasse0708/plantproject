@@ -62,9 +62,9 @@ include::komponenten.puml[]
 bla bla
 
 .Handler für die REST-Schnittstelle
-[plantuml,BuchHandler,svg]
+[plantuml,PflanzeHandler,svg]
 ----
-include::BuchHandler.puml[]
+include::PflanzeHandler.puml[]
 ----
 
 === Der Anwendungskern
@@ -72,9 +72,9 @@ include::BuchHandler.puml[]
 bla bla
 
 .Anwendungskern mit Mongoose
-[plantuml,BuchService,svg]
+[plantuml,PflanzeService,svg]
 ----
-include::BuchService.puml[]
+include::PflanzeService.puml[]
 ----
 
 === Interface für Entities und das Mongoose-Model

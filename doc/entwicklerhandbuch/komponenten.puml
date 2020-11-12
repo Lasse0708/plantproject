@@ -26,16 +26,16 @@ node "Funktionen mit Express" {
 }
 
 node "Klassen / objektorientiert" {
-  [BuchHandler]
-  [BuchFileHandler]
+  [PflanzeHandler]
+  [PflanzeFileHandler]
 
-  [BuchService]
-  [BuchFileService]
+  [PflanzeService]
+  [PflanzeFileService]
 }
 
 [sendMail()] as sendMail
 
-entity BuchModel
+entity PflanzeModel
 
 cloud {
     [Mongoose]
@@ -61,21 +61,21 @@ node {
 
 RESTClient ~~> [Router]
 [Router] ..> [Handler Functions]
-[Handler Functions] ..> [BuchHandler]
-[Handler Functions] ..> [BuchFileHandler]
+[Handler Functions] ..> [PflanzeHandler]
+[Handler Functions] ..> [PflanzeFileHandler]
 
-[BuchHandler] --> [BuchService]
-[BuchFileHandler] --> [BuchFileService]
-[BuchService] ..> [BuchModel]
-[BuchFileService] ..> [BuchModel]
+[PflanzeHandler] --> [PflanzeService]
+[PflanzeFileHandler] --> [PflanzeFileService]
+[PflanzeService] ..> [PflanzeModel]
+[PflanzeFileService] ..> [PflanzeModel]
 
-[BuchModel] ~~> [Mongoose]
-[BuchFileService] ~~> [MongDB\nNative Driver]
+[PflanzeModel] ~~> [Mongoose]
+[PflanzeFileService] ~~> [MongDB\nNative Driver]
 [sendMail] ~~> [nodemailer]
 [Mongoose] ~~> [Collection Pflanze]
 [MongDB\nNative Driver] ~~> [GridFS]
 
-[BuchService] --> [sendMail]
+[PflanzeService] --> [sendMail]
 [nodemailer] ~~> [Mailserver]
 
 footer (c) Jürgen Zimmermann

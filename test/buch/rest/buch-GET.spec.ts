@@ -141,7 +141,7 @@ describe('GET /pflanzen', () => {
 
             // Jedes Pflanze hat im Array der Schlagwoerter "javascript"
             body.map(
-                (pflanze: BuchData) => pflanze.schlagwoerter,
+                (pflanze: PflanzeData) => pflanze.schlagwoerter,
             ).forEach((s: Array<string>) =>
                 expect(s).to.include(schlagwort.toUpperCase()),
             );

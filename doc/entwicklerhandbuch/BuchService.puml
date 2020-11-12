@@ -27,27 +27,27 @@ package shared {
 
 package pflanze {
   package entity {
-    class BuchModel
-    hide BuchModel circle
+    class PflanzeModel
+    hide PflanzeModel circle
 
-    class "validateBuch()" as validateBuch
-    hide validateBuch circle
+    class "validatePflanze()" as validatePflanze
+    hide validatePflanze circle
 
-    interface BuchData <<entity>>
+    interface PflanzeData <<entity>>
   }
 
   package service #DDDDDD {
-    BuchService ..> Promise
-    BuchService ..> BuchModel
-    BuchService ..> BuchData
-    BuchService ..> validateBuch
-    BuchService ..> sendMail
+    PflanzeService ..> Promise
+    PflanzeService ..> PflanzeModel
+    PflanzeService ..> PflanzeData
+    PflanzeService ..> validatePflanze
+    PflanzeService ..> sendMail
 
-    class BuchService << control >> {
-      + async findById(id: string): Promise<BuchData | undefined>
-      + async find(query?: any): Promise<Array<BuchData>>
-      + async create(pflanze: BuchData): Promise<BuchData>
-      + async update(pflanze: BuchData, version: string): Promise<BuchData>
+    class PflanzeService << control >> {
+      + async findById(id: string): Promise<PflanzeData | undefined>
+      + async find(query?: any): Promise<Array<PflanzeData>>
+      + async create(pflanze: PflanzeData): Promise<PflanzeData>
+      + async update(pflanze: PflanzeData, version: string): Promise<PflanzeData>
       + async delete(id: string): Promise<boolean>
     }
   }
