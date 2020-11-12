@@ -54,7 +54,7 @@ class SharedRequestHandler {
     // eslint-disable-next-line max-params
     validateUUID(_: Request, res: Response, next: NextFunction, id: unknown) {
         if (typeof id !== 'string') {
-            res.status(HttpStatus.BAD_REQUEST).send('Keine gueltige Buch-ID');
+            res.status(HttpStatus.BAD_REQUEST).send('Keine gueltige Pflanze-ID');
         }
         const idStr = id as string;
         if (validator.isUUID(idStr)) {
@@ -65,7 +65,7 @@ class SharedRequestHandler {
 
         logger.debug('SharedRequestHandler.validateUUID(): status=BAD_REQUEST');
         res.status(HttpStatus.BAD_REQUEST).send(
-            `${idStr} ist keine gueltige Buch-ID`,
+            `${idStr} ist keine gueltige Pflanze-ID`,
         );
     }
 

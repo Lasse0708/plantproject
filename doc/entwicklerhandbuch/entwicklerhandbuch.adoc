@@ -82,9 +82,9 @@ include::BuchService.puml[]
 bla bla
 
 .Entity, Model und Schema
-[plantuml,Buch,svg]
+[plantuml,Pflanze,svg]
 ----
-include::Buch.puml[]
+include::Pflanze.puml[]
 ----
 
 == Programmierrichtlinien für TypeScript und JavaScript

@@ -15,13 +15,13 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-import { BuchArt, Verlag } from '../../../src/buch/entity';
+import { BuchArt, Verlag } from '../../../src/pflanze/entity';
 import { HttpMethod, agent, createTestserver } from '../../testserver';
 import { HttpStatus, serverConfig, uuidRegexp } from '../../../src/shared';
 import { afterAll, beforeAll, describe, test } from '@jest/globals';
 import fetch, { Headers, Request } from 'node-fetch';
 import type { AddressInfo } from 'net';
-import type { Buch } from '../../../src/buch/entity';
+import type { Pflanze } from '../../../src/pflanze/entity';
 import { PATHS } from '../../../src/app';
 import type { Server } from 'http';
 import chai from 'chai';
@@ -40,7 +40,7 @@ const { expect } = chai;
 // -----------------------------------------------------------------------------
 // T e s t d a t e n
 // -----------------------------------------------------------------------------
-const neuesBuch: Buch = {
+const neuesBuch: Pflanze = {
     titel: 'Neu',
     rating: 1,
     art: BuchArt.DRUCKAUSGABE,
@@ -67,7 +67,7 @@ const neuesBuchInvalid: object = {
     autoren: [{ nachname: 'Test', vorname: 'Theo' }],
     schlagwoerter: [],
 };
-const neuesBuchTitelExistiert: Buch = {
+const neuesBuchTitelExistiert: Pflanze = {
     titel: 'Alpha',
     rating: 1,
     art: BuchArt.DRUCKAUSGABE,
@@ -86,12 +86,12 @@ const neuesBuchTitelExistiert: Buch = {
 // T e s t s
 // -----------------------------------------------------------------------------
 let server: Server;
-const path = PATHS.buecher;
+const path = PATHS.pflanzen;
 let buecherUri: string;
 let loginUri: string;
 
 // Test-Suite
-describe('POST /buecher', () => {
+describe('POST /pflanzen', () => {
     // Testserver starten und dabei mit der DB verbinden
     beforeAll(async () => {
         server = await createTestserver();
@@ -104,7 +104,7 @@ describe('POST /buecher', () => {
 
     afterAll(() => server.close());
 
-    test('Neues Buch', async () => {
+    test('Neues Pflanze', async () => {
         // given
         const token = await login(loginUri);
 
@@ -142,7 +142,7 @@ describe('POST /buecher', () => {
         expect(responseBody).to.be.empty;
     });
 
-    test('Neues Buch mit ungueltigen Daten', async () => {
+    test('Neues Pflanze mit ungueltigen Daten', async () => {
         // given
         const token = await login(loginUri);
         const headers = new Headers({
@@ -175,7 +175,7 @@ describe('POST /buecher', () => {
         expect(isbn).to.endWith('eine gueltige ISBN-Nummer.');
     });
 
-    test('Neues Buch, aber der Titel existiert bereits', async () => {
+    test('Neues Pflanze, aber der Titel existiert bereits', async () => {
         // given
         const token = await login(loginUri);
         const headers = new Headers({
@@ -199,7 +199,7 @@ describe('POST /buecher', () => {
         expect(responseBody).has.string('Titel');
     });
 
-    test('Neues Buch, aber ohne Token', async () => {
+    test('Neues Pflanze, aber ohne Token', async () => {
         // given
         const headers = new Headers({ 'Content-Type': 'application/json' });
         const body = JSON.stringify(neuesBuchTitelExistiert);
@@ -219,7 +219,7 @@ describe('POST /buecher', () => {
         expect(responseBody).to.be.equalIgnoreCase('unauthorized');
     });
 
-    test('Neues Buch, aber mit falschem Token', async () => {
+    test('Neues Pflanze, aber mit falschem Token', async () => {
         // given
         const token = 'FALSCH';
         const headers = new Headers({

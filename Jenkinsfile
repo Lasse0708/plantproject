@@ -106,7 +106,7 @@ pipeline {
             steps {
                 parallel(
                     // 'Test': {
-                           // Cannot find module '/var/jenkins_home/workspace/buch/node_modules/bcrypt/lib/binding/napi-v3/bcrypt_lib.node' from 'node_modules/bcrypt/bcrypt.js'
+                           // Cannot find module '/var/jenkins_home/workspace/pflanze/node_modules/bcrypt/lib/binding/napi-v3/bcrypt_lib.node' from 'node_modules/bcrypt/bcrypt.js'
                     //     sh 'npm run test:coverage'
                     // },
                     'ESLint': {
@@ -135,14 +135,14 @@ pipeline {
 
                 success {
                     script {
-                        if (fileExists("${env.WORKSPACE}/buch.zip")) {
-                            sh 'rm buch.zip'
+                        if (fileExists("${env.WORKSPACE}/pflanze.zip")) {
+                            sh 'rm pflanze.zip'
                         }
                     }
                     // https://www.jenkins.io/doc/pipeline/steps/pipeline-utility-steps/#zip-create-zip-file
-                    zip zipFile: 'buch.zip', archive: false, dir: 'dist'
-                    // jobs/buch/builds/.../archive/buch.zip
-                    archiveArtifacts 'buch.zip'
+                    zip zipFile: 'pflanze.zip', archive: false, dir: 'dist'
+                    // jobs/pflanze/builds/.../archive/pflanze.zip
+                    archiveArtifacts 'pflanze.zip'
                 }
             }
         }

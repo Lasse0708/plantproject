@@ -26,7 +26,7 @@ Content-Type: application/json
 X-REQUEST-TYPE: GraphQL
 
 {
-  buecher {
+  pflanzen {
     id
     titel
     art
@@ -34,13 +34,13 @@ X-REQUEST-TYPE: GraphQL
   }
 }
 
-### Suche titel, art, isbn und version von einem Buch mit vorhandener Buch-ID
+### Suche titel, art, isbn und version von einem Pflanze mit vorhandener Pflanze-ID
 POST {{url}}
 Content-Type: application/json
 X-REQUEST-TYPE: GraphQL
 
 {
-  buch(id: "00000000-0000-0000-0000-000000000001") {
+  pflanze(id: "00000000-0000-0000-0000-000000000001") {
     titel
     art
     isbn
@@ -54,7 +54,7 @@ Content-Type: application/json
 X-REQUEST-TYPE: GraphQL
 
 {
-  buecher(titel: "Alpha") {
+  pflanzen(titel: "Alpha") {
     titel
     art
   }
@@ -67,7 +67,7 @@ Content-Type: application/json
 X-REQUEST-TYPE: GraphQL
 
 {
-  buecher(titel: "a") {
+  pflanzen(titel: "a") {
     titel
     art
     schlagwoerter

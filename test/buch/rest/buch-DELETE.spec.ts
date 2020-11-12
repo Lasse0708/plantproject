@@ -44,12 +44,12 @@ const id = '00000000-0000-0000-0000-000000000005';
 // T e s t s
 // -----------------------------------------------------------------------------
 let server: Server;
-const path = PATHS.buecher;
+const path = PATHS.pflanzen;
 let buecherUri: string;
 let loginUri: string;
 
 // Test-Suite
-describe('DELETE /buecher', () => {
+describe('DELETE /pflanzen', () => {
     // Testserver starten und dabei mit der DB verbinden
     beforeAll(async () => {
         server = await createTestserver();
@@ -62,7 +62,7 @@ describe('DELETE /buecher', () => {
 
     afterAll(() => server.close());
 
-    test('Vorhandenes Buch loeschen', async () => {
+    test('Vorhandenes Pflanze loeschen', async () => {
         // given
         const token = await login(loginUri);
         const headers = new Headers({ Authorization: `Bearer ${token}` });
@@ -81,7 +81,7 @@ describe('DELETE /buecher', () => {
         expect(responseBody).to.be.empty;
     });
 
-    test('Buch loeschen, aber ohne Token', async () => {
+    test('Pflanze loeschen, aber ohne Token', async () => {
         // given
         const request = new Request(`${buecherUri}/${id}`, {
             method: HttpMethod.DELETE,
@@ -97,7 +97,7 @@ describe('DELETE /buecher', () => {
         expect(responseBody).to.be.equalIgnoreCase('unauthorized');
     });
 
-    test('Buch loeschen, aber mit falschem Token', async () => {
+    test('Pflanze loeschen, aber mit falschem Token', async () => {
         // given
         const token = 'FALSCH';
         const headers = new Headers({ Authorization: `Bearer ${token}` });

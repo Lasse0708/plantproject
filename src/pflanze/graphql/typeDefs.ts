@@ -51,13 +51,13 @@ export const typeDefs = gql`
         schlagwoerter: [String]
     }
 
-    "Funktionen, um Buecher zu empfangen"
+    "Funktionen, um Pflanzen zu empfangen"
     type Query {
         pflanzen(name: String): [Pflanze]
         pflanze(id: ID!): Pflanze
     }
 
-    "Funktionen, um Buecher anzulegen, zu aktualisieren oder zu loeschen"
+    "Funktionen, um Pflanzen anzulegen, zu aktualisieren oder zu loeschen"
     type Mutation {
         createPflanze(
             name: String!

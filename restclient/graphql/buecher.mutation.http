@@ -20,7 +20,7 @@
 @url = https://localhost:3000/graphql
 #@url = https://gener-iert-12345.herokuapp.com/graphql
 
-### Neues Buch anlegen
+### Neues Pflanze anlegen
 POST {{url}}
 Content-Type: application/json
 X-REQUEST-TYPE: GraphQL
@@ -43,7 +43,7 @@ mutation {
   }
 }
 
-### Vorhandenes Buch aktualisieren
+### Vorhandenes Pflanze aktualisieren
 POST {{url}}
 Content-Type: application/json
 X-REQUEST-TYPE: GraphQL
@@ -71,7 +71,7 @@ mutation {
   }
 }
 
-### Vorhandenes Buch loeschen
+### Vorhandenes Pflanze loeschen
 POST {{url}}
 Content-Type: application/json
 X-REQUEST-TYPE: GraphQL

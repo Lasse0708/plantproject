@@ -27,10 +27,10 @@ const {
 // -----------------------------------------------------------------------------
 const dbName = DB_NAME ?? 'acme';
 const atlas = DB_HOST?.endsWith('mongodb.net') ?? false;
-const host = DB_HOST ?? 'localhost';
+const host = DB_HOST ?? 'cluster0.8j9ph.mongodb.net';
 const port = 27017;
-const user = DB_USER ?? 'admin';
-const pass = DB_PASS ?? 'p';
+const user = DB_USER ?? 'Lasse';
+const pass = DB_PASS ?? 'G1bson123';
 const tls = DB_TLS === undefined || DB_TLS === 'true' || DB_TLS === 'TRUE';
 const dbPopulate = DB_POPULATE !== undefined;
 

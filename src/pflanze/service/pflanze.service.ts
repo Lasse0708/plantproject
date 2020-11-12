@@ -65,11 +65,11 @@ export class PflanzeService {
 
         logger.debug(`PflanzeService.find(): query=${JSON5.stringify(query)}`);
 
-        // alle Buecher asynchron suchen u. aufsteigend nach name sortieren
+        // alle Pflanzen asynchron suchen u. aufsteigend nach name sortieren
         // https://docs.mongodb.org/manual/reference/object-id
         // entries(): { name: 'a', rating: 5 } => [{ name: 'x'}, {rating: 5}]
         if (query === undefined || Object.entries(query).length === 0) {
-            logger.debug('PflanzeService.find(): alle Buecher');
+            logger.debug('PflanzeService.find(): alle Pflanzen');
             // lean() liefert ein "Plain JavaScript Object" statt ein Mongoose Document
             return PflanzenModel.find().sort('name').lean<PflanzeData>();
         }
@@ -77,7 +77,7 @@ export class PflanzeService {
         // { name: 'a', rating: 5, javascript: true }
         const { name, javascript, typescript, ...dbQuery } = query; // eslint-disable-line @typescript-eslint/no-unsafe-assignment
 
-        // Buecher zur Query (= JSON-Objekt durch Express) asynchron suchen
+        // Pflanzen zur Query (= JSON-Objekt durch Express) asynchron suchen
         if (name !== undefined) {
             // Name in der Query: Teilstring des Names,
             // d.h. "LIKE" als regulaerer Ausdruck

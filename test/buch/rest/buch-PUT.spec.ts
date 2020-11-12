@@ -15,7 +15,7 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-import { BuchArt, Verlag } from '../../../src/buch/entity';
+import { BuchArt, Verlag } from '../../../src/pflanze/entity';
 import { HttpMethod, agent, createTestserver } from '../../testserver';
 import { HttpStatus, logger, serverConfig } from '../../../src/shared';
 import { afterAll, beforeAll, describe, test } from '@jest/globals';
@@ -101,13 +101,13 @@ const veraltesBuch: object = {
 // -----------------------------------------------------------------------------
 // T e s t s
 // -----------------------------------------------------------------------------
-const path = PATHS.buecher;
+const path = PATHS.pflanzen;
 let server: Server;
 let buecherUri: string;
 let loginUri: string;
 
 // Test-Suite
-describe('PUT /buecher/:id', () => {
+describe('PUT /pflanzen/:id', () => {
     // Testserver starten und dabei mit der DB verbinden
     beforeAll(async () => {
         server = await createTestserver();
@@ -121,7 +121,7 @@ describe('PUT /buecher/:id', () => {
 
     afterAll(() => server.close());
 
-    test('Vorhandenes Buch aendern', async () => {
+    test('Vorhandenes Pflanze aendern', async () => {
         // given
         const token = await login(loginUri);
         const headers = new Headers({
@@ -146,7 +146,7 @@ describe('PUT /buecher/:id', () => {
         expect(responseBody).to.be.empty;
     });
 
-    test('Nicht-vorhandenes Buch aendern', async () => {
+    test('Nicht-vorhandenes Pflanze aendern', async () => {
         // given
         const token = await login(loginUri);
         const headers = new Headers({
@@ -169,11 +169,11 @@ describe('PUT /buecher/:id', () => {
         expect(response.status).to.be.equal(HttpStatus.PRECONDITION_FAILED);
         const responseBody = await response.text();
         expect(responseBody).to.be.equal(
-            `Es gibt kein Buch mit der ID "${idNichtVorhanden}".`,
+            `Es gibt kein Pflanze mit der ID "${idNichtVorhanden}".`,
         );
     });
 
-    test('Vorhandenes Buch aendern, aber mit ungueltigen Daten', async () => {
+    test('Vorhandenes Pflanze aendern, aber mit ungueltigen Daten', async () => {
         // given
         const token = await login(loginUri);
         const headers = new Headers({
@@ -206,7 +206,7 @@ describe('PUT /buecher/:id', () => {
         expect(isbn).to.endWith('eine gueltige ISBN-Nummer.');
     });
 
-    test('Vorhandenes Buch aendern, aber ohne Versionsnummer', async () => {
+    test('Vorhandenes Pflanze aendern, aber ohne Versionsnummer', async () => {
         // given
         const token = await login(loginUri);
         const headers = new Headers({
@@ -230,7 +230,7 @@ describe('PUT /buecher/:id', () => {
         expect(responseBody).to.be.equal('Versionsnummer fehlt');
     });
 
-    test('Vorhandenes Buch aendern, aber mit alter Versionsnummer', async () => {
+    test('Vorhandenes Pflanze aendern, aber mit alter Versionsnummer', async () => {
         // given
         const token = await login(loginUri);
         const headers = new Headers({
@@ -255,7 +255,7 @@ describe('PUT /buecher/:id', () => {
         expect(responseBody).to.have.string('Die Versionsnummer');
     });
 
-    test('Vorhandenes Buch aendern, aber ohne Token', async () => {
+    test('Vorhandenes Pflanze aendern, aber ohne Token', async () => {
         // given
         const headers = new Headers({
             'Content-Type': 'application/json',
@@ -278,7 +278,7 @@ describe('PUT /buecher/:id', () => {
         expect(responseBody).to.be.equalIgnoreCase('unauthorized');
     });
 
-    test('Vorhandenes Buch aendern, aber mit falschem Token', async () => {
+    test('Vorhandenes Pflanze aendern, aber mit falschem Token', async () => {
         // given
         const token = 'FALSCH';
         const headers = new Headers({
